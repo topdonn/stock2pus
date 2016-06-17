@@ -19,7 +19,14 @@ describe('Stock', () => {
   after(() => {
     nock.restore();
   });
-
+  describe('.getQuote', () => {
+    it('should return purchase price of a stock', (done) => {
+      Stock.getQuote('AAPL', (err, purchasePrice) => {
+        expect(purchasePrice).to.equal(100);
+        done();
+      });
+    });
+  });
   describe('constructor', () => {
     it('should construct a new Stock object', () => {
       const s1 = new Stock('aapl');
